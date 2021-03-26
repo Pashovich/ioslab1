@@ -56,8 +56,6 @@ class PlayerShip :BaseShipObject{
     }
     
     public func moveShipRight(){
-        print(UIScreen.main.bounds.maxX)
-        print(self.shipObject.frame.origin.x)
         if (self.shipObject.frame.origin.x + 20 < UIScreen.main.bounds.maxX){
             self.shipObject.frame = CGRect(x: self.shipObject.frame.origin.x + 20, y: self.shipObject.frame.origin.y, width: self.shipObject.frame.width, height: self.shipObject.frame.height)
         }
