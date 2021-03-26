@@ -50,6 +50,7 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="shootGesture" destination="5JN-ss-2WK" id="6Qr-6R-3D8"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="backToStartScreen" id="ht4-3g-5ei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t0W-QT-ZUA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -59,7 +60,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1759.4202898550725" y="121.875"/>
+            <point key="canvasLocation" x="1832" y="127"/>
         </scene>
         <!--Result Table View Controler-->
         <scene sceneID="ozr-zR-Knk">
@@ -111,4 +112,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="126.5625"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ht4-3g-5ei"/>
+    </inferredMetricsTieBreakers>
 </document>

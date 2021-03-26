@@ -1,5 +1,6 @@
 {
     "startButtonLable": "Start Game",
     "totalPointLable": "TOTAL POINTS: ",
-    "resultsButton" : "Results"
+    "resultsButton" : "Results",
+    "goBack" : "Back to menu"
 }

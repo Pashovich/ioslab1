@@ -63,7 +63,7 @@ class GameSceneViewController : UIViewController{
     let sideOffsetsArray = [-10,10]
     let buttonWidth = CGFloat(50)
     let buttonHeight = CGFloat(50)
-    let rowsOfEnemies = 3
+    let rowsOfEnemies = 1
     let columnsOfEnemies = 4
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var context:NSManagedObjectContext!
@@ -111,6 +111,19 @@ class GameSceneViewController : UIViewController{
         self.initGame()
 
     }
+    @objc func goBack(sender: UIButton!) {
+        self.performSegue(withIdentifier: "backToStartScreen", sender: self)
+    }
+    private func makeGoBackButton(){
+        
+        let button = UIButton(frame: CGRect(x: UIScreen.main.bounds.width/2 - 150/2, y: UIScreen.main.bounds.height/2 - self.buttonHeight/2 - 100, width: 150, height: self.buttonHeight))
+        button.backgroundColor = UIColor(named: "Buttons")
+        button.setTitleColor(self.textColor, for: .normal)
+        button.setTitle(self.data.goBack, for: .normal)
+        button.addTarget(self, action: #selector(goBack(sender:)), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+    }
     private func makePointsLabel(){
         let topOffset = UIScreen.main.bounds.maxY * 0.1
         self.totalPointsLabel = UILabel(frame: CGRect(x:0, y: 0, width: 300, height: 21))
@@ -143,22 +156,22 @@ class GameSceneViewController : UIViewController{
         }
         
     }
+    private func endGame(result: String){
+        self.gameIsOn = false
+        self.makeEndGameLable(labelText: result)
+        self.saveData(resultString: result,  totalPoints: self.playerShipObject.getTotalPoints())
+        self.makeGoBackButton()
+    }
     public func checkState(){
         DispatchQueue.global(qos: .userInteractive).async {
             while(self.gameIsOn){
                 usleep(10000)
                 DispatchQueue.main.asyncAfter(deadline: .now()) {
                     if (self.playerShipObject.isWin){
-                        self.gameIsOn = false
-                        self.makeEndGameLable(labelText: "WIN")
-                        self.saveData(resultString: "WIN",  totalPoints: self.playerShipObject.getTotalPoints())
-                        return
+                        self.endGame(result: "WIN")
                     }
                     if (EnemyShip.isWin){
-                        self.gameIsOn = false
-                        self.makeEndGameLable(labelText: "LOST")
-                        self.saveData(resultString: "LOST",  totalPoints: self.playerShipObject.getTotalPoints())
-                        return
+                        self.endGame(result: "LOST")
                     }
                 }
             }

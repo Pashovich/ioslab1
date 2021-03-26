@@ -12,4 +12,5 @@ struct JsonData : Decodable{
     var startButtonLable : String = "start"
     var totalPointLable : String = "points"
     var resultsButton : String = "results"
+    var goBack : String = "back"
 }
